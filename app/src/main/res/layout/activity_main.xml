@@ -118,11 +118,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Pesquisados recentemente"
+        android:text="@string/pesquisados_recentemente"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lastestCepsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 </LinearLayout>

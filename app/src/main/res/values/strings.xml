@@ -8,4 +8,5 @@
     <string name="district">Bairro</string>
     <string name="zip_code_not_found">CEP não encontrado</string>
     <string name="zip_code_deleted">CEP removido</string>
+    <string name="pesquisados_recentemente">Pesquisados recentemente</string>
 </resources>

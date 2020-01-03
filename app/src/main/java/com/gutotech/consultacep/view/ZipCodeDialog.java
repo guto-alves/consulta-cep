@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import com.gutotech.consultacep.R;
 import com.gutotech.consultacep.model.ZipCode;
 
-
 public class ZipCodeDialog extends Dialog {
 
     public ZipCodeDialog(@NonNull Context context, ZipCode zipCode) {

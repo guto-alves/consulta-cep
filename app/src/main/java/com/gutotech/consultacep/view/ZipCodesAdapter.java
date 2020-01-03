@@ -19,8 +19,8 @@ public class ZipCodesAdapter extends RecyclerView.Adapter<ZipCodesAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
-        private int position;
+        public final TextView textView;
+        public int position;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
