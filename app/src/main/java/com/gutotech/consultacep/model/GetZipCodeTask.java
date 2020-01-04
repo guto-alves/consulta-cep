@@ -1,9 +1,9 @@
-package com.gutotech.consultacep.data;
+package com.gutotech.consultacep.model;
 
 import android.os.AsyncTask;
 
 import com.gutotech.consultacep.Contract;
-import com.gutotech.consultacep.model.ZipCode;
+import com.gutotech.consultacep.db.ZipCodeEntity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,11 +13,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 
 public class GetZipCodeTask extends AsyncTask<URL, Void, String> {
+
+    public interface GetZipCodeListener {
+        void onZipCodeReceived(ZipCodeEntity zipCodeEntity);
+    }
+
+    private GetZipCodeListener mListener;
     private Contract.Presenter mPresenter;
 
-    public GetZipCodeTask(Contract.Presenter presenter) {
+    public GetZipCodeTask(GetZipCodeListener listener, Contract.Presenter presenter) {
+        mListener = listener;
         mPresenter = presenter;
     }
 
@@ -55,27 +63,24 @@ public class GetZipCodeTask extends AsyncTask<URL, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         if (result != null) {
-            ZipCode zipCode = convertJSONtoZipCode(result);
-            mPresenter.displayZipCodeInfo(zipCode);
-            mPresenter.insertZipCode(zipCode);
-            mPresenter.hideProgressBar();
-        } else {
-            mPresenter.hideProgressBarAndGrid();
-            mPresenter.setError("CEP não encontrado");
-        }
+            ZipCodeEntity zipCodeEntity = convertJSONtoZipCode(result);
+            mListener.onZipCodeReceived(zipCodeEntity);
+        } else
+            mListener.onZipCodeReceived(null);
     }
 
-    private ZipCode convertJSONtoZipCode(String s) {
+    private ZipCodeEntity convertJSONtoZipCode(String s) {
         try {
             JSONObject jsonObject = new JSONObject(s);
-            return new ZipCode(
+            return new ZipCodeEntity(
                     jsonObject.getString("cep"),
                     jsonObject.getString("address"),
                     jsonObject.getString("district"),
                     jsonObject.getString("city"),
                     jsonObject.getString("state"),
                     jsonObject.getString("lat"),
-                    jsonObject.getString("lng")
+                    jsonObject.getString("lng"),
+                    new Date().getTime()
             );
         } catch (JSONException e) {
             e.printStackTrace();

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Consulta CEP</string>
     <string name="baseUrl">https://cep.awesomeapi.com.br/json/</string>
-    <string name="zipCode">CEP</string>
+    <string name="zipCodeEntity">CEP</string>
     <string name="address">Endereço</string>
     <string name="state">Estado</string>
     <string name="city">Cidade</string>
@@ -9,4 +9,5 @@
     <string name="zip_code_not_found">CEP não encontrado</string>
     <string name="zip_code_deleted">CEP removido</string>
     <string name="pesquisados_recentemente">Pesquisados recentemente</string>
+    <string name="invalid_zip_code">CEP deve conter 8 digitos</string>
 </resources>

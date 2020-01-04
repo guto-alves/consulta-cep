@@ -8,14 +8,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gutotech.consultacep.model.ZipCode;
+import com.gutotech.consultacep.db.ZipCodeEntity;
 
 import java.util.List;
 
 public class ZipCodesAdapter extends RecyclerView.Adapter<ZipCodesAdapter.ViewHolder> {
 
     public interface ZipCodeClickListener {
-        void onClick(View view, ZipCode zipCode);
+        void onClick(View view, ZipCodeEntity zipCodeEntity);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -28,7 +28,7 @@ public class ZipCodesAdapter extends RecyclerView.Adapter<ZipCodesAdapter.ViewHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clickListener.onClick(v, zipCodeList.get(position));
+                    clickListener.onClick(v, zipCodeEntityList.get(position));
                 }
             });
 
@@ -36,11 +36,11 @@ public class ZipCodesAdapter extends RecyclerView.Adapter<ZipCodesAdapter.ViewHo
         }
     }
 
-    private List<ZipCode> zipCodeList;
+    private List<ZipCodeEntity> zipCodeEntityList;
     private ZipCodeClickListener clickListener;
 
-    public ZipCodesAdapter(List<ZipCode> zipCodeList, ZipCodeClickListener clickListener) {
-        this.zipCodeList = zipCodeList;
+    public ZipCodesAdapter(List<ZipCodeEntity> zipCodeEntityList, ZipCodeClickListener clickListener) {
+        this.zipCodeEntityList = zipCodeEntityList;
         this.clickListener = clickListener;
     }
 
@@ -53,14 +53,14 @@ public class ZipCodesAdapter extends RecyclerView.Adapter<ZipCodesAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ZipCode zipCode = zipCodeList.get(position);
+        ZipCodeEntity zipCodeEntity = zipCodeEntityList.get(position);
 
         holder.position = position;
-        holder.textView.setText(String.format("%s, %s", zipCode.address, zipCode.state));
+        holder.textView.setText(String.format("%s, %s", zipCodeEntity.address, zipCodeEntity.state));
     }
 
     @Override
     public int getItemCount() {
-        return zipCodeList.size();
+        return zipCodeEntityList.size();
     }
 }

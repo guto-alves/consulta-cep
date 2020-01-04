@@ -20,7 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.gutotech.consultacep.Contract;
 import com.gutotech.consultacep.R;
-import com.gutotech.consultacep.model.ZipCode;
+import com.gutotech.consultacep.db.ZipCodeEntity;
 import com.gutotech.consultacep.presenter.MainPresenter;
 
 public class MainActivity extends AppCompatActivity implements Contract.View {
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
         lastestSearchedRecyclerView.setHasFixedSize(true);
         lastestSearchedRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
 
-        zipCodesAdapter = new ZipCodesAdapter(mPresenter.getZipCodeList(), zipCodeClickListener);
+        zipCodesAdapter = new ZipCodesAdapter(mPresenter.getZipCodeEntityList(), zipCodeClickListener);
         lastestSearchedRecyclerView.setAdapter(zipCodesAdapter);
 
         ItemTouchHelper.Callback callback = new ItemTouchHelper.Callback() {
@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
 
     private final ZipCodesAdapter.ZipCodeClickListener zipCodeClickListener = new ZipCodesAdapter.ZipCodeClickListener() {
         @Override
-        public void onClick(View view, ZipCode zipCode) {
-            new ZipCodeDialog(MainActivity.this, zipCode).show();
+        public void onClick(View view, ZipCodeEntity zipCodeEntity) {
+            new ZipCodeDialog(zipCodeEntity).show(getSupportFragmentManager(), "dialog");
         }
     };
 
@@ -124,25 +124,25 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
     }
 
     @Override
-    public void displayZipCodeInfo(ZipCode zipCode) {
+    public void displayZipCodeInfo(ZipCodeEntity zipCodeEntity) {
         TextView addressTextView = findViewById(R.id.addressTextView);
         TextView districtTextView = findViewById(R.id.districtTextView);
         TextView cityTextView = findViewById(R.id.cityTextView);
         TextView stateTextView = findViewById(R.id.stateTextView);
 
-        addressTextView.setText(zipCode.address);
-        districtTextView.setText(zipCode.district);
-        cityTextView.setText(zipCode.city);
-        stateTextView.setText(zipCode.state);
+        addressTextView.setText(zipCodeEntity.address);
+        districtTextView.setText(zipCodeEntity.district);
+        cityTextView.setText(zipCodeEntity.city);
+        stateTextView.setText(zipCodeEntity.state);
     }
 
     @Override
-    public void setError(String message) {
-        zipCodeTextInputEditText.setError(message);
+    public void setError(int resId) {
+        zipCodeTextInputEditText.setError(getString(resId));
     }
 
     @Override
-    public void updateAdapter() {
+    public void updateList() {
         zipCodesAdapter.notifyDataSetChanged();
     }
 

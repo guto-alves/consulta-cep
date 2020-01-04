@@ -26,10 +26,12 @@
                 android:id="@+id/zipCodeTextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/zipCode"
+                android:hint="@string/zipCodeEntity"
                 android:imeOptions="actionSearch"
                 android:inputType="numberSigned"
-                android:maxLength="8" />
+                android:maxLength="8"
+                android:selectAllOnFocus="true"
+                android:textSize="24sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

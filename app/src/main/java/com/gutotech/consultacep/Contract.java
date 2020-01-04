@@ -1,6 +1,8 @@
 package com.gutotech.consultacep;
 
-import com.gutotech.consultacep.model.ZipCode;
+import androidx.annotation.StringRes;
+
+import com.gutotech.consultacep.db.ZipCodeEntity;
 
 import java.util.List;
 
@@ -13,11 +15,11 @@ public interface Contract {
 
         void hideProgressBarAndGrid();
 
-        void displayZipCodeInfo(ZipCode zipCode);
+        void displayZipCodeInfo(ZipCodeEntity zipCodeEntity);
 
-        void setError(String message);
+        void setError(@StringRes int resId);
 
-        void updateAdapter();
+        void updateList();
     }
 
     interface Presenter {
@@ -25,21 +27,13 @@ public interface Contract {
 
         void showProgressBar();
 
-        void hideProgressBar();
-
-        void hideProgressBarAndGrid();
-
-        void displayZipCodeInfo(ZipCode zipCode);
-
-        void setError(String message);
-
-        List<ZipCode> getZipCodeList();
+        List<ZipCodeEntity> getZipCodeEntityList();
 
         void getAllZipCodes();
 
         void deleteZipCode(int position);
 
-        void insertZipCode(ZipCode zipCode);
+        void insertZipCode(ZipCodeEntity zipCodeEntity);
 
         void close();
     }
