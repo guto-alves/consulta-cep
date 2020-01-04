@@ -1,6 +1,6 @@
 # Consulta CEP
 
-App Android que usa a [API de CEP da AwesomeAPI](https://docs.awesomeapi.com.br/api-cep) para saber o endereço de qualquer CEP - construído para aprender a usar web services REST, processar respostas JSON, arquitetura MVP e pesistir dados usando a biblioteca Room.
+App Android que usa a [API de CEP da AwesomeAPI](https://docs.awesomeapi.com.br/api-cep) para saber o endereço de qualquer CEP - construído para aprender a usar web services REST, processar respostas JSON, arquitetura MVP e persistir dados usando a biblioteca Room.
 
 <p>
 <img src="https://user-images.githubusercontent.com/48946749/71759172-da878a80-2e87-11ea-849c-a4181028f56e.jpg" width="200">
