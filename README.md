@@ -10,4 +10,4 @@ App Android que usa a [API de CEP da AwesomeAPI](https://docs.awesomeapi.com.br/
 
 ## Download
 
-[Consulta CEP.apk](https://drive.google.com/file/d/1RRf-g_memNbzr4T3rctUh8981n3-aR7N/view?usp=sharing)
+[Consulta CEP.apk](https://drive.google.com/file/d/1yZPhe49ISJxz3CcfzrvyFFhjQWvFztOM/view?usp=sharing)
